@@ -1,0 +1,35 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        fmap1={}
+        n=len(matches)
+        for i in range(n):
+            val=matches[i][0]
+            if val not in fmap1:
+                fmap1[val]=1
+            else:
+                fmap1[val]+=1
+        fmap2={}
+        for i in range(n):
+            val=matches[i][1]
+            if val not in fmap2:
+                fmap2[val]=1
+            else:
+                fmap2[val]+=1
+        ans=[]
+        ans1=[]
+        ans2=[]
+        for f,s in matches:
+            if f not in fmap2:
+                ans1.append(f)
+                fmap2[f]=0
+            
+            if fmap2[s]==1:
+                ans2.append(s)
+        ans1.sort()
+        ans2.sort()
+        ans.append(ans1)
+        ans.append(ans2)
+        return ans
+
+            
+            
